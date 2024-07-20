@@ -13959,3 +13959,9 @@ shopify-payment-terms {
 .adria-premium-badge.product-meta {
   margin: 10px 0;
 }
+
+/* Product Variant - Product Benefits Block */
+.product-form__info-content-benefits ul {
+  margin-top: 6px;
+  font-size: 14px;
+}
