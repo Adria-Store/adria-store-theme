@@ -243,7 +243,7 @@
               {%- if selected_variant.incoming -%}
                 {%- capture next_incoming_date -%}{{ selected_variant.next_incoming_date | date: format: 'date' }}{%- endcapture -%}
                 <span class="product-form__inventory inventory inventory--high">{{ 'product.form.incoming_stock' | t: next_incoming_date: next_incoming_date }}</span>
-              {%- else -%}
+                {%- else -%}
                 <span class="product-form__inventory inventory inventory--high">{{ 'product.form.oversell_stock' | t }}</span>
               {%- endif -%}
             {%- else -%}
@@ -270,6 +270,27 @@
     </div>
   {%- endif -%}
 
+  {% if product.metafields.custom.benefits_description != blank or product.metafields.custom.benefits_list != blank %}
+  <div class="product-form__info-item">
+    <span class="product-form__info-title text--strong">Vorteile:</span>
+    <div class="product-form__info-content product-form__info-content-benefits">
+      {%- if product.metafields.custom.benefits_description -%}
+        <span>{{ product.metafields.custom.benefits_description }}</span>
+      {%- endif -%}
+
+      {%- if product.metafields.custom.benefits_list -%}
+        <ul class="text--strong">
+          {% for field in product.metafields.custom.benefits_list.value %}
+            <li>{{ field }}</li>
+          {% endfor %}
+        </ul>
+      {%- endif -%}
+    </div>
+  </div>
+  {%- endif -%}
+
+
+  
   {%- if product.template_suffix != 'contact' -%}
     {%- if block.settings.show_quantity_selector -%}
       {%- unless product.tags contains '__gift' -%}
@@ -289,4 +310,5 @@
       <input type="hidden" name="quantity" value="1">
     {%- endif -%}
   {%- endif -%}
+
 </div>
