@@ -15,9 +15,9 @@
         "newsletter": {
           "type": "newsletter",
           "settings": {
-            "title": "Join Us",
-            "content": "<p>A short sentence describing what someone will receive by subscribing<\/p>",
-            "subtext": "100% free, Unsubscribe any time!",
+            "title": "Newsletter",
+            "content": "<p>Sie möchten mehr Informationen über unsere Produkte und unseren Online-Shop erhalten und immer auf dem neusten Stand sein?<\/p>",
+            "subtext": "",
             "background": "#3a2a2f",
             "text": "#ffffff"
           }
