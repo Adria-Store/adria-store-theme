@@ -25,7 +25,7 @@
         "social-media": {
           "type": "social_media",
           "settings": {
-            "title": "Follow us",
+            "title": "Folge uns",
             "show_rss": true
           }
         }
