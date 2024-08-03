@@ -252,7 +252,7 @@
     "featured-collection": {
       "type": "featured-collection",
       "settings": {
-        "collection": "premium-fleischspezialitaten",
+        "collection": "adria-premium",
         "title": "Ausgewählte Produkte",
         "products_count": 13,
         "layout": "vertical",
