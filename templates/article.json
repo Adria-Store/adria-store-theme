@@ -36,11 +36,11 @@
       ],
       "settings": {
         "show_category": true,
-        "show_author": true,
+        "show_author": false,
         "show_date": true,
-        "show_share_buttons": true,
-        "show_tags": true,
-        "show_gravatar": true
+        "show_share_buttons": false,
+        "show_tags": false,
+        "show_gravatar": false
       }
     }
   },
