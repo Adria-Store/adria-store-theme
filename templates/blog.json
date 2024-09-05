@@ -36,10 +36,10 @@
       ],
       "settings": {
         "articles_per_page": 12,
-        "highlight_first_article": true,
-        "show_tags": true,
+        "highlight_first_article": false,
+        "show_tags": false,
         "show_category": true,
-        "show_author": true,
+        "show_author": false,
         "show_date": true,
         "show_excerpt": false
       }
