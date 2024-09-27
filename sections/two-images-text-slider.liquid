@@ -1,0 +1,83 @@
+<section class="section section--text-centered" data-section-id="{{ section.id }}" data-section-type="two-images-text-slider">
+    <div class="container">
+      <div class="layout images-slider">
+        <div class="layout__section layout__section--large-secondary">
+            <div class="image-container">
+                <div class="image-wrapper image-left-wrapper">
+                    <img class="image" width="{{ section.settings.left_image.width }}" height="{{ section.settings.left_image.height }}" src="{{ section.settings.left_image | img_url: '700x' }}" alt="{{ section.settings.left_image.alt | escape }}">
+                </div>
+
+                <div class="image-wrapper image-right-wrapper">
+                    <img class="image" width="{{ section.settings.right_image.width }}" height="{{ section.settings.right_image.height }}" src="{{ section.settings.right_image | img_url: '700x' }}" alt="{{ section.settings.right_image.alt | escape }}">
+                </div>
+            </div>
+        </div>
+        <div class="layout__section">
+          <h3 class="section__title heading images-slider__subtitle h3">About us</h3>
+          <div  data-section-type="two-images-text-slider">
+            <div class="container container--flush">
+              <div class="text-with-icons">
+                <div class="text-with-icons__item images-slider__item">
+                  <h3 class="images-slider__title">Adria Store ist ein Geschäft, das mit dem Ziel eröffnet wurde, Ihnen eine unvergessliche kulinarische Reise zu bieten. </h3>
+                  <p class="images-slider__text">
+                    In unserem Laden finden Sie sorgfältig ausgewählte Produkte, die Ihren Gaumen auf eine Abenteuerreise von der kroatischen Istrien über Serbien bis nach Montenegro mitnehmen werden.
+                  </p>
+                </div>
+                <div class="text-with-icons__item images-slider__item">
+                  <h3 class="images-slider__title">In unserem Sortiment finden Sie:</h3>
+                  <p class="images-slider__text">
+                    <ul>
+                      <li>Ausgezeichnete Weine</li>
+                      <li>Alkoholische und nicht-alkoholische Getränke</li>
+                      <li>Fleischspezialitäten und andere Fleischprodukte</li>
+                      <li>Spirituosen</li>
+                      <li>Käse</li>
+                    </ul>
+                    Und noch vieles mehr!
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+  
+{% schema %}
+  {
+    "name": "Two Images & Text Slider",
+    "settings": [
+      {
+        "id": "custom_text_title",
+        "type": "text",
+        "label": "Text box heading",
+        "default": "Title"
+      },
+      {
+        "id": "custom_text_body",
+        "type": "richtext",
+        "label": "Add custom text below",
+        "default": "<p>Add your text here</p>"
+      },
+      {
+        "type": "image_picker",
+        "id": "left_image",
+        "label": "Left image",
+        "info": "700 x 500px .jpg recommended"
+      },
+      {
+        "type": "image_picker",
+        "id": "right_image",
+        "label": "Right image",
+        "info": "700 x 500px .jpg recommended"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Two Images & Text Slider",
+        "category": "Custom"
+      }
+    ]
+  }
+{% endschema %}
