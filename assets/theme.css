@@ -13961,7 +13961,101 @@ shopify-payment-terms {
 }
 
 /* Product Variant - Product Benefits Block */
-.product-form__info-content-benefits ul {
-  margin-top: 6px;
-  font-size: 14px;
+.images-slider.layout {
+  align-items: center;
+}
+
+.images-slider .layout__section--large-secondary {
+  width: 45%;
+}
+
+.images-slider .image-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+}
+
+.images-slider .flickity-page-dots {
+  bottom: -20px;
+}
+
+.images-slider .image {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  border-radius: 3px;
+}
+
+.images-slider .images-slider__subtitle {
+  text-align: left;
+  margin-left: 8px;
+  margin-bottom: 14px;
+}
+
+.images-slider .image-wrapper {
+  position: relative;
+}
+
+.images-slider .image-left-wrapper {
+  width: 284px;
+  height: 350px;
+  transform: rotate(-2deg);
+  z-index: 0;
+}
+
+.images-slider .image-right-wrapper {
+  width: 380px;
+  height: 465px;
+  transform: rotate(2deg);
+  z-index: 1;
+}
+
+.images-slider__item {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.images-slider__subtitle {
+  text-align: left;
+}
+
+.images-slider__title {
+  font-size: 2.3rem;
+  margin-bottom: 10px;
+  color: #333;
+  margin-bottom: 30px;
+  font-weight: 600;
+  line-height: 44px;
+}
+
+.images-slider__text {
+  font-size: 1em;
+  color: #666;
+}
+
+@media screen and (max-width: 1000px) {
+  .images-slider .layout__section--large-secondary {
+    width: 100%;
+  }
+
+  .images-slider .image-left-wrapper {
+    max-width: 380px;
+    height: auto;
+    will-change: transform;
+  }
+  
+  .images-slider .image-right-wrapper {
+    height: 100%;
+    max-width: 380px;
+    max-height: 465px;
+    will-change: transform;
+  }
+}
+
+@media screen and (min-width: 1000px) { 
+  .images-slider .text-with-icons {
+    padding: 0 0px;
+  }
 }
