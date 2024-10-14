@@ -40,9 +40,9 @@
           </div>
         {%- endif -%}
 
-        {%- if cart.total_price < 2500 -%}
+        {%- if cart.total_price < 1700 -%}
           <div class='mini-cart__content mini-cart__inner' style='height: auto' >
-            <p class="alert alert--tight alert--center text--strong">Der Mindestbestellwert liegt bei <span style="color: #EE0000; font-weight: bold">25€</span></p>
+            <p class="alert alert--tight alert--center text--strong">Der Mindestbestellwert liegt bei <span style="color: #EE0000; font-weight: bold">17€</span></p>
           </div>
         {%- endif -%}
     
@@ -212,7 +212,7 @@
           <div class="button-group button-group--loose button-group--fit">
             <a href="{{ routes.cart_url }}" class="button button--secondary">{{ 'cart.general.view_cart' | t }}</a>
             {%- if settings.cart_show_checkout_button -%}
-              {%- if cart.total_weight > 31500 or cart.total_price < 2500 -%}
+              {%- if cart.total_weight > 31500 or cart.total_price < 1700 -%}
                 <button disabled type="submit" name="checkout" class="button button--primary">{{ 'cart.general.checkout' | t }}</button>
               {%- else -%}
                 <button type="submit" name="checkout" class="button button--primary">{{ 'cart.general.checkout' | t }}</button>
