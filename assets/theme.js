@@ -15880,6 +15880,13 @@
         resize: false,
         // watchCSS: true
       });
+
+      // Force a re-layout after initialization
+      setTimeout(function () {
+        _this.flickityInstance.resize();
+        _this.flickityInstance.reposition();
+      }, 100);
+      
       var lastWidth = window.innerWidth;
       window.addEventListener('resize', function () {
         if (window.innerWidth !== lastWidth) {
