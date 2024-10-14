@@ -14022,12 +14022,12 @@ shopify-payment-terms {
 }
 
 .images-slider__title {
-  font-size: 2.3rem;
+  font-size: 21px;
   margin-bottom: 10px;
   color: #333;
   margin-bottom: 30px;
   font-weight: 600;
-  line-height: 44px;
+  line-height: 1.5;
 }
 
 .images-slider__text {
