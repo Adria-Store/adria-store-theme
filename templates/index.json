@@ -348,8 +348,18 @@
         "button_link": "shopify://collections/new-arrivals"
       }
     },
+    "two_images_text_slider_3tdh87": {
+      "type": "two-images-text-slider",
+      "settings": {
+        "custom_text_title": "Title",
+        "custom_text_body": "<p>Add your text here</p>",
+        "left_image": "shopify://shop_images/Rectangle_2.png",
+        "right_image": "shopify://shop_images/Rectangle_1.png"
+      }
+    },
     "16532415719b06e6cc": {
       "type": "rich-text",
+      "disabled": true,
       "settings": {
         "text_width": "regular",
         "title": "Willkommen zu Adria Store",
@@ -379,15 +389,6 @@
         "background": "#73293a",
         "text": "#ffffff"
       }
-    },
-    "two_images_text_slider_3tdh87": {
-      "type": "two-images-text-slider",
-      "settings": {
-        "custom_text_title": "Title",
-        "custom_text_body": "<p>Add your text here</p>",
-        "left_image": "shopify://shop_images/Rectangle_2.png",
-        "right_image": "shopify://shop_images/Rectangle_1.png"
-      }
     }
   },
   "order": [
@@ -397,9 +398,9 @@
     "featured-collection",
     "16524825715e02299f",
     "16525485416a21adb7",
+    "two_images_text_slider_3tdh87",
     "16532415719b06e6cc",
     "1653241939a6f1e315",
-    "newsletter",
-    "two_images_text_slider_3tdh87"
+    "newsletter"
   ]
 }
