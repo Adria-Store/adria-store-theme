@@ -57,10 +57,10 @@
           </div>
         {%- endif -%}
 
-        {%- if cart.total_price < 1700  -%}
+        {%- if cart.total_price < 2500  -%}
           <div class='card'>
             <div class='gift-wrap' style='border: 1px solid #ee0000'>
-              <p>Der Mindestbestellwert liegt bei <span style="color: #EE0000; font-weight: bold">17€</span></p>
+              <p>Der Mindestbestellwert liegt bei <span style="color: #EE0000; font-weight: bold">25€</span></p>
             </div>
           </div>
         {%- endif -%}
@@ -457,7 +457,7 @@
 
                     <input type="hidden" name="attributes[collection_products_per_page]" value="">
                     <input type="hidden" name="attributes[collection_layout]" value="">
-                    {%- if cart.total_weight > 31500 or cart.total_price < 1700 -%}
+                    {%- if cart.total_weight > 31500 or cart.total_price < 2500 -%}
                       <button disabled type="submit" name="checkout" class="cart-recap__checkout button button--primary button--full button--large">{{ 'cart.general.checkout' | t }}</button>
                     {%- else -%}
                       <button type="submit" name="checkout" class="cart-recap__checkout button button--primary button--full button--large">{{ 'cart.general.checkout' | t }}</button>
