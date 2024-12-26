@@ -14139,8 +14139,8 @@ shopify-payment-terms {
 } */
 
 .hero-grid-slider .hero-grid-slide-track {
-  /* -webkit-animation: scroll-vertical 10s linear infinite; */
-  /* animation: scroll-vertical 10s linear infinite; */
+  /* -webkit-animation: scroll-vertical 40s linear infinite; */
+  /* animation: scroll-vertical 40s linear infinite; */
   display: flex;
   height: calc(350px * 14);
   flex-direction: column;
