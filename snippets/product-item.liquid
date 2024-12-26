@@ -148,12 +148,26 @@
               {%- endif -%}
             </span>
           {%- endif -%}
+
+          {% comment %} Pfand {% endcomment %}
+          {% for tag in product.tags %}
+            {% if tag contains '_flasa:plastika-limenka' %}
+              <p class='product-form__price-info' style='padding-left: 5px'>inkl. €0.25 Pfand</p>
+            {% elsif tag contains '_flasa:staklo' %}
+              <p class='product-form__price-info' style='padding-left: 5px'>inkl. €0.08 Pfand</p>
+            {% endif %}
+          {% endfor %}
+          
         </div>
 
         {%- if product.selected_or_first_available_variant.unit_price_measurement -%}
           <div class="product-item__price-info">
             <div class="unit-price-measurement">
-              <span class="unit-price-measurement__price">{{ product.selected_or_first_available_variant.unit_price | money }}</span>
+              {% if product.tags contains '_flasa:plastika-limenka' %}
+                <span class="unit-price-measurement__price">{{ product.selected_or_first_available_variant.unit_price | minus: 25 | money }}</span>
+              {% else %}
+                <span class="unit-price-measurement__price">{{ product.selected_or_first_available_variant.unit_price | money }}</span>
+              {% endif %}
               <span class="unit-price-measurement__separator">/ </span>
 
               {%- if product.selected_or_first_available_variant.unit_price_measurement.reference_value != 1 -%}
