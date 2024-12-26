@@ -166,9 +166,9 @@
                                     <span class="line-item__price">
                                       {{ line_item.final_price | money }}
                                        {% if line_item.product.tags contains '_flasa:plastika-limenka' %}
-                                        <span style='font-size: 12px; font-weight: 500'>zzgl. €0.25 Pfand</span>
+                                        <span style='font-size: 12px; font-weight: 500'>inkl. €0.25 Pfand</span>
                                          {% elsif line_item.product.tags contains '_flasa:staklo' %}
-                                          <span style='font-size: 12px; font-weight: 500'>zzgl. €0.08 Pfand</span>
+                                          <span style='font-size: 12px; font-weight: 500'>inkl. €0.08 Pfand</span>
                                       {% endif %}
                                     </span>
                                   {%- endif -%}
