@@ -14113,18 +14113,18 @@ shopify-payment-terms {
 }
 
 .hero-grid-slider .hero-grid-slide-track {
-  animation: scroll-vertical 85s linear infinite;
+  animation: scroll-vertical 120s linear infinite;
   display: flex;
   height: calc(350px * 14);
   flex-direction: column;
 }
 
 .hero-layout-column-left .hero-grid-slider:nth-child(1) .hero-grid-slide-track {
-  animation: scroll-vertical-reverse 85s linear infinite;
+  animation: scroll-vertical-reverse 120s linear infinite;
 }
 
 .hero-layout-column-right .hero-grid-slider:nth-child(2) .hero-grid-slide-track {
-  animation: scroll-vertical-reverse 85s linear infinite;
+  animation: scroll-vertical-reverse 120s linear infinite;
 }
 
 .hero-grid-slider .hero-grid-slide {
@@ -14211,7 +14211,6 @@ shopify-payment-terms {
   font-weight: bold;
 }
 
-/* Middle Content */
 .hero-grid-notice {
   display: flex;
   flex-direction: column;
@@ -14269,6 +14268,8 @@ shopify-payment-terms {
 .hero-grid-btn-primary {
   background-color: var(--header-accent-color);
   color: #FFFFFF;
+  display: flex;
+  align-items: center;
 }
 
 .hero-grid-btn-primary:hover {
@@ -14279,6 +14280,8 @@ shopify-payment-terms {
   background-color: transparent;
   color: var(--header-accent-color);
   border: 2px solid var(--header-accent-color);
+  display: flex;
+  align-items: center;
 }
 
 .hero-grid-btn-secondary:hover {
@@ -14286,8 +14289,8 @@ shopify-payment-terms {
 }
 
 .hero-grid-icon {
-  margin-right: 5px;
-  height: 30px;
+  margin-right: 8px;
+  height: 20px;
   display: inline-block;
 }
 
@@ -14377,14 +14380,14 @@ shopify-payment-terms {
   }
 
   .hero-grid-slider .hero-grid-slide-track {
-    animation: scroll-horizontal 20s linear infinite;
+    animation: scroll-horizontal 100s linear infinite;
     display: flex;
     flex-direction: row;
     width: calc(230px * 14);
   }
   
   .hero-layout-column-right .hero-grid-slider:nth-child(1) .hero-grid-slide-track {
-    animation: scroll-horizontal-reverse 20s linear infinite;
+    animation: scroll-horizontal-reverse 100s linear infinite;
   }
 
   .hero-grid-slider {
@@ -14502,7 +14505,7 @@ shopify-payment-terms {
   }
 }
 
-/* Vertical Scrolling Animation */
+/* Vertical & Horizontal Scrolling Animation */
 @keyframes scroll-vertical {
   0% {
     transform: translateY(0);

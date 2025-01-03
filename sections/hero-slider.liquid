@@ -11,7 +11,7 @@
               {{ block.settings.custom_url }}
             {% else %}
               {{ all_products[block.settings.product].url }}
-            {% endif %}"> 
+            {% endif %}" aria-label="{{ block.settings.label | default: all_products[block.settings.product].title }}"> 
               <div class="hero-grid-slide">
                 <div class="hero-grid-product-card">
                   {% if block.settings.label != blank %}
@@ -19,10 +19,10 @@
                   {% endif %}
                   <div class="hero-grid-product-card-image">
                     {% if block.settings.custom_image %}
-                    <img class="lazyload image--fade-in" src="{{ block.settings.custom_image | img_url: '500x' }}" alt="{{ section.settings.store_image.alt | escape }}">
+                    <img class="lazyload image--fade-in" src="{{ block.settings.custom_image | img_url: '500x' }}" alt="{{ block.settings.label | default: 'Product Image' }}">
                     {% else %}
                     {% if block.settings.product %}
-                    <img class="lazyload image--fade-in" src="{{ all_products[block.settings.product].featured_image | img_url: '500x' }}" alt="{{ section.settings.store_image.alt | escape }}">
+                    <img class="lazyload image--fade-in" src="{{ all_products[block.settings.product].featured_image | img_url: '500x' }}" alt="{{ all_products[block.settings.product].title | escape }}">
                     {% endif %}
                     {% endif %}
                   </div>
@@ -42,7 +42,7 @@
               {{ block.settings.custom_url }}
             {% else %}
               {{ all_products[block.settings.product].url }}
-            {% endif %}"> 
+            {% endif %}" aria-label="{{ block.settings.label | default: all_products[block.settings.product].title }}"> 
               <div class="hero-grid-slide">
                 <div class="hero-grid-product-card">
                   {% if block.settings.label != blank %}
@@ -50,10 +50,10 @@
                   {% endif %}
                   <div class="hero-grid-product-card-image">
                     {% if block.settings.custom_image %}
-                    <img class="lazyload image--fade-in" src="{{ block.settings.custom_image | img_url: '500x' }}" alt="{{ section.settings.store_image.alt | escape }}">
+                    <img class="lazyload image--fade-in" src="{{ block.settings.custom_image | img_url: '500x' }}" alt="{{ block.settings.label | default: 'Product Image' }}">
                     {% else %}
                     {% if block.settings.product %}
-                    <img class="lazyload image--fade-in" src="{{ all_products[block.settings.product].featured_image | img_url: '500x' }}" alt="{{ section.settings.store_image.alt | escape }}">
+                    <img class="lazyload image--fade-in" src="{{ all_products[block.settings.product].featured_image | img_url: '500x' }}" alt="{{ all_products[block.settings.product].title | escape }}">
                     {% endif %}
                     {% endif %}
                   </div>
@@ -73,81 +73,81 @@
     </div>
     <!--  Left side, slider 2 -->
     <div class="hero-grid-slider">
-        <div class="slider">
-            <div class="hero-grid-slide-track">
-                {% assign left_slide_2_blocks = section.blocks | where: 'type', 'left_slide_2' %}
-                {% for block in left_slide_2_blocks %}
-                  <a href="{% if block.settings.custom_url and block.settings.custom_url != '' %}
-                      {{ block.settings.custom_url }}
+      <div class="slider">
+        <div class="hero-grid-slide-track">
+          {% assign left_slide_2_blocks = section.blocks | where: 'type', 'left_slide_2' %}
+          {% for block in left_slide_2_blocks %}
+            <a href="{% if block.settings.custom_url and block.settings.custom_url != '' %}
+                {{ block.settings.custom_url }}
+              {% else %}
+                {{ all_products[block.settings.product].url }}
+              {% endif %}" aria-label="{{ block.settings.label | default: all_products[block.settings.product].title }}">         
+              <div class="hero-grid-slide">
+                <div class="hero-grid-product-card">
+                  {% if block.settings.label != blank %}
+                  <div class="hero-grid-product-card-label">{{ block.settings.label }}</div>
+                  {% endif %}
+                  <div class="hero-grid-product-card-image">
+                    {% if block.settings.custom_image %}
+                    <img class="lazyload image--fade-in" src="{{ block.settings.custom_image | img_url: '500x' }}" alt="{{ block.settings.label | default: 'Product Image' }}">
                     {% else %}
-                      {{ all_products[block.settings.product].url }}
-                    {% endif %}">         
-                    <div class="hero-grid-slide">
-                      <div class="hero-grid-product-card">
-                        {% if block.settings.label != blank %}
-                        <div class="hero-grid-product-card-label">{{ block.settings.label }}</div>
-                        {% endif %}
-                        <div class="hero-grid-product-card-image">
-                          {% if block.settings.custom_image %}
-                          <img class="lazyload image--fade-in" src="{{ block.settings.custom_image | img_url: '500x' }}" alt="{{ section.settings.store_image.alt | escape }}">
-                          {% else %}
-                          {% if block.settings.product %}
-                          <img class="lazyload image--fade-in" src="{{ all_products[block.settings.product].featured_image | img_url: '500x' }}" alt="{{ section.settings.store_image.alt | escape }}">
-                          {% endif %}
-                          {% endif %}
-                        </div>
-                        <div class="hero-grid-product-card-info">
-                          {% if block.settings.product %}
-                          <div class="hero-grid-product-card-title">
-                            {% if block.settings.custom_title and block.settings.custom_title != "" %}
-                              {{ block.settings.custom_title }}
-                            {% else %}
-                              {{ all_products[block.settings.product].title }}
-                            {% endif %}
-                          </div>
-                          {% endif %}
-                        </div> 
-                      </div>
+                    {% if block.settings.product %}
+                    <img class="lazyload image--fade-in" src="{{ all_products[block.settings.product].featured_image | img_url: '500x' }}" alt="{{ all_products[block.settings.product].title | escape }}">
+                    {% endif %}
+                    {% endif %}
+                  </div>
+                  <div class="hero-grid-product-card-info">
+                    {% if block.settings.product %}
+                    <div class="hero-grid-product-card-title">
+                      {% if block.settings.custom_title and block.settings.custom_title != "" %}
+                        {{ block.settings.custom_title }}
+                      {% else %}
+                        {{ all_products[block.settings.product].title }}
+                      {% endif %}
                     </div>
-                  </a>
-                {% endfor %}
-                {% for block in left_slide_2_blocks %}
-                  <a href="{% if block.settings.custom_url and block.settings.custom_url != '' %}
-                      {{ block.settings.custom_url }}
+                    {% endif %}
+                  </div> 
+                </div>
+              </div>
+            </a>
+          {% endfor %}
+          {% for block in left_slide_2_blocks %}
+            <a href="{% if block.settings.custom_url and block.settings.custom_url != '' %}
+                {{ block.settings.custom_url }}
+              {% else %}
+                {{ all_products[block.settings.product].url }}
+              {% endif %}" aria-label="{{ block.settings.label | default: all_products[block.settings.product].title }}">         
+              <div class="hero-grid-slide">
+                <div class="hero-grid-product-card">
+                  {% if block.settings.label != blank %}
+                  <div class="hero-grid-product-card-label">{{ block.settings.label }}</div>
+                  {% endif %}
+                  <div class="hero-grid-product-card-image">
+                    {% if block.settings.custom_image %}
+                    <img class="lazyload image--fade-in" src="{{ block.settings.custom_image | img_url: '500x' }}" alt="{{ block.settings.label | default: 'Product Image' }}">
                     {% else %}
-                      {{ all_products[block.settings.product].url }}
-                    {% endif %}">         
-                    <div class="hero-grid-slide">
-                      <div class="hero-grid-product-card">
-                        {% if block.settings.label != blank %}
-                        <div class="hero-grid-product-card-label">{{ block.settings.label }}</div>
-                        {% endif %}
-                        <div class="hero-grid-product-card-image">
-                          {% if block.settings.custom_image %}
-                          <img class="lazyload image--fade-in" src="{{ block.settings.custom_image | img_url: '500x' }}" alt="{{ section.settings.store_image.alt | escape }}">
-                          {% else %}
-                          {% if block.settings.product %}
-                          <img class="lazyload image--fade-in" src="{{ all_products[block.settings.product].featured_image | img_url: '500x' }}" alt="{{ section.settings.store_image.alt | escape }}">
-                          {% endif %}
-                          {% endif %}
-                        </div>
-                        <div class="hero-grid-product-card-info">
-                          {% if block.settings.product %}
-                          <div class="hero-grid-product-card-title">
-                            {% if block.settings.custom_title and block.settings.custom_title != "" %}
-                              {{ block.settings.custom_title }}
-                            {% else %}
-                              {{ all_products[block.settings.product].title }}
-                            {% endif %}
-                          </div>
-                          {% endif %}
-                        </div> 
-                      </div>
+                    {% if block.settings.product %}
+                    <img class="lazyload image--fade-in" src="{{ all_products[block.settings.product].featured_image | img_url: '500x' }}" alt="{{ all_products[block.settings.product].title | escape }}">
+                    {% endif %}
+                    {% endif %}
+                  </div>
+                  <div class="hero-grid-product-card-info">
+                    {% if block.settings.product %}
+                    <div class="hero-grid-product-card-title">
+                      {% if block.settings.custom_title and block.settings.custom_title != "" %}
+                        {{ block.settings.custom_title }}
+                      {% else %}
+                        {{ all_products[block.settings.product].title }}
+                      {% endif %}
                     </div>
-                  </a>
-                {% endfor %}
-            </div>
+                    {% endif %}
+                  </div> 
+                </div>
+              </div>
+            </a>
+          {% endfor %}
         </div>
+      </div>
     </div>
   </div>
     
@@ -172,12 +172,12 @@
         <a href="{{ section.settings.hero_primary_button_link }}" class="hero-grid-btn hero-grid-btn-primary">
           {{ section.settings.hero_primary_button_text }}
         </a>
-        <a href="{{ section.settings.hero_secondary_button_link }}" class="hero-grid-btn hero-grid-btn-secondary">
+        <a href="/collections/new-arrivals" class="hero-grid-btn hero-grid-btn-secondary">
           <span class="hero-grid-icon">
             {% if section.settings.hero_secondary_button_icon %}
             <img src="{{ section.settings.hero_secondary_button_icon | file_url }}" alt="Button Icon">
             {% else %}
-            <img src="assets/new-icon.png" alt="New Icon">
+            <img src="assets/label-new-icon.svg" alt="New Icon">
             {% endif %}
           </span>
           {{ section.settings.hero_secondary_button_text | default: "Neue Produkte ansehen" }}
@@ -203,7 +203,7 @@
             {{ block.settings.custom_url }}
           {% else %}
             {{ all_products[block.settings.product].url }}
-          {% endif %}">
+          {% endif %}" aria-label="{{ block.settings.label | default: all_products[block.settings.product].title }}">
             <div class="hero-grid-slide">
               <div class="hero-grid-product-card">
                 {% if block.settings.label != blank %}
@@ -211,7 +211,7 @@
                 {% endif %}
                 <div class="hero-grid-product-card-image">
                   {% if block.settings.custom_image %}
-                  <img class="lazyload image--fade-in" data-src="{{ block.settings.custom_image | file_url }}" data-widths="[500, 800, 1200]" data-sizes="auto" alt="Custom Image">
+                  <img class="lazyload image--fade-in" data-src="{{ block.settings.custom_image | file_url }}" data-widths="[500, 800, 1200]" data-sizes="auto" alt="{{ block.settings.label | default: 'Custom Image' }}">
                   {% else %}
                   {% if block.settings.product %}
                   <img class="lazyload image--fade-in" data-src="{{ all_products[block.settings.product].featured_image | img_url: '500x' }}" data-widths="[500, 800, 1200]" data-sizes="auto" alt="{{ all_products[block.settings.product].title | escape }}">
@@ -240,7 +240,7 @@
             {{ block.settings.custom_url }}
           {% else %}
             {{ all_products[block.settings.product].url }}
-          {% endif %}">
+          {% endif %}" aria-label="{{ block.settings.label | default: all_products[block.settings.product].title }}">
             <div class="hero-grid-slide">
               <div class="hero-grid-product-card">
                 {% if block.settings.label != blank %}
@@ -248,7 +248,7 @@
                 {% endif %}
                 <div class="hero-grid-product-card-image">
                   {% if block.settings.custom_image %}
-                  <img class="lazyload image--fade-in" data-src="{{ block.settings.custom_image | file_url }}" data-widths="[500, 800, 1200]" data-sizes="auto" alt="Custom Image">
+                  <img class="lazyload image--fade-in" data-src="{{ block.settings.custom_image | file_url }}" data-widths="[500, 800, 1200]" data-sizes="auto" alt="{{ block.settings.label | default: 'Custom Image' }}">
                   {% else %}
                   {% if block.settings.product %}
                   <img class="lazyload image--fade-in" data-src="{{ all_products[block.settings.product].featured_image | img_url: '500x' }}" data-widths="[500, 800, 1200]" data-sizes="auto" alt="{{ all_products[block.settings.product].title | escape }}">
@@ -283,7 +283,7 @@
             {{ block.settings.custom_url }}
           {% else %}
             {{ all_products[block.settings.product].url }}
-          {% endif %}">
+          {% endif %}" aria-label="{{ block.settings.label | default: all_products[block.settings.product].title }}">
             <div class="hero-grid-slide">
               <div class="hero-grid-product-card">
                 {% if block.settings.label != blank %}
@@ -291,7 +291,7 @@
                 {% endif %}
                 <div class="hero-grid-product-card-image">
                   {% if block.settings.custom_image %}
-                  <img class="lazyload image--fade-in" data-src="{{ block.settings.custom_image | file_url }}" data-widths="[500, 800, 1200]" data-sizes="auto" alt="Custom Image">
+                  <img class="lazyload image--fade-in" data-src="{{ block.settings.custom_image | file_url }}" data-widths="[500, 800, 1200]" data-sizes="auto" alt="{{ block.settings.label | default: 'Custom Image' }}">
                   {% else %}
                   {% if block.settings.product %}
                   <img class="lazyload image--fade-in" data-src="{{ all_products[block.settings.product].featured_image | img_url: '500x' }}" data-widths="[500, 800, 1200]" data-sizes="auto" alt="{{ all_products[block.settings.product].title | escape }}">
@@ -304,12 +304,6 @@
                     {{ all_products[block.settings.product].title }}
                   </div>
                   {% endif %}
-                  <div class="hero-grid-product-card-colors">
-                    {% assign color_array = block.settings.colors | split: ',' %}
-                    {% for color in color_array %}
-                    <span class="hero-grid-color-circle" style="background-color: {{ color }}"></span>
-                    {% endfor %}
-                  </div>
                 </div> 
               </div>
             </div>
@@ -320,7 +314,7 @@
             {{ block.settings.custom_url }}
           {% else %}
             {{ all_products[block.settings.product].url }}
-          {% endif %}">
+          {% endif %}" aria-label="{{ block.settings.label | default: all_products[block.settings.product].title }}">
             <div class="hero-grid-slide">
               <div class="hero-grid-product-card">
                 {% if block.settings.label != blank %}
@@ -328,7 +322,7 @@
                 {% endif %}
                 <div class="hero-grid-product-card-image">
                   {% if block.settings.custom_image %}
-                  <img class="lazyload image--fade-in" data-src="{{ block.settings.custom_image | file_url }}" data-widths="[500, 800, 1200]" data-sizes="auto" alt="Custom Image">
+                  <img class="lazyload image--fade-in" data-src="{{ block.settings.custom_image | file_url }}" data-widths="[500, 800, 1200]" data-sizes="auto" alt="{{ block.settings.label | default: 'Custom Image' }}">
                   {% else %}
                   {% if block.settings.product %}
                   <img class="lazyload image--fade-in" data-src="{{ all_products[block.settings.product].featured_image | img_url: '500x' }}" data-widths="[500, 800, 1200]" data-sizes="auto" alt="{{ all_products[block.settings.product].title | escape }}">
@@ -341,17 +335,11 @@
                     {{ all_products[block.settings.product].title }}
                   </div>
                   {% endif %}
-                  <div class="hero-grid-product-card-colors">
-                    {% assign color_array = block.settings.colors | split: ',' %}
-                    {% for color in color_array %}
-                    <span class="hero-grid-color-circle" style="background-color: {{ color }}"></span>
-                    {% endfor %}
-                  </div>
                 </div> 
               </div>
             </div>
           </a>
-          {% endfor %}
+        {% endfor %}
       </div>
     </div>
   </div>
@@ -394,6 +382,12 @@
       "id": "hero_secondary_button_text",
       "label": "Secondary Button Text",
       "default": "Neue Produkte ansehen"
+    },
+    {
+      "type": "url",
+      "id": "hero_secondary_button_link",
+      "label": "Secondary Button Link",
+      "default": "/collections/new"
     }
   ],
   "blocks": [
