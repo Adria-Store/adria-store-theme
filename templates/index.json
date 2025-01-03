@@ -201,60 +201,6 @@
             "custom_title": "",
             "custom_url": ""
           }
-        },
-        "right_slide_2_9UArEq": {
-          "type": "right_slide_2",
-          "settings": {
-            "product": "ozujsko-grejp-0-50-l",
-            "label": "",
-            "custom_title": "",
-            "custom_url": ""
-          }
-        },
-        "right_slide_2_xJeD4c": {
-          "type": "right_slide_2",
-          "settings": {
-            "product": "hell-energy-drink-black-cherry-250ml",
-            "label": "",
-            "custom_title": "",
-            "custom_url": ""
-          }
-        },
-        "right_slide_2_zyQHN3": {
-          "type": "right_slide_2",
-          "settings": {
-            "product": "smuk-premium-pflaumenbrand-alk-41-vol-0-7l",
-            "label": "",
-            "custom_title": "",
-            "custom_url": ""
-          }
-        },
-        "right_slide_2_gzHn6y": {
-          "type": "right_slide_2",
-          "settings": {
-            "product": "dedova-rakija-opas-brandy-alk-390-vol-075-l",
-            "label": "",
-            "custom_title": "",
-            "custom_url": ""
-          }
-        },
-        "right_slide_2_iyLinC": {
-          "type": "right_slide_2",
-          "settings": {
-            "product": "dedova-rakija-opas-brandy-alk-390-vol-075-l",
-            "label": "",
-            "custom_title": "",
-            "custom_url": ""
-          }
-        },
-        "right_slide_2_zqYxMq": {
-          "type": "right_slide_2",
-          "settings": {
-            "product": "teran-kozlovic-alk-13-vol-075-l",
-            "label": "",
-            "custom_title": "",
-            "custom_url": ""
-          }
         }
       },
       "block_order": [
@@ -278,13 +224,7 @@
         "right_slide_1_AmzGEP",
         "right_slide_1_8ygGEG",
         "right_slide_1_M7QnQN",
-        "right_slide_1_KyXwyP",
-        "right_slide_2_9UArEq",
-        "right_slide_2_xJeD4c",
-        "right_slide_2_zyQHN3",
-        "right_slide_2_gzHn6y",
-        "right_slide_2_iyLinC",
-        "right_slide_2_zqYxMq"
+        "right_slide_1_KyXwyP"
       ],
       "settings": {
         "hero_title": "Authentische Spezialitäten vom Balkan - Direkt an Ihre Haustür geliefert",
