@@ -172,7 +172,7 @@
         <a href="{{ section.settings.hero_primary_button_link }}" class="hero-grid-btn hero-grid-btn-primary">
           {{ section.settings.hero_primary_button_text }}
         </a>
-        <a href="/collections/new-arrivals" class="hero-grid-btn hero-grid-btn-secondary">
+        <a href="{{ section.settings.hero_secondary_button_link }}" class="hero-grid-btn hero-grid-btn-secondary">
           <span class="hero-grid-icon">
             {% if section.settings.hero_secondary_button_icon %}
             <img src="{{ section.settings.hero_secondary_button_icon | file_url }}" alt="Button Icon">
@@ -180,15 +180,15 @@
             <img src="assets/label-new-icon.svg" alt="New Icon">
             {% endif %}
           </span>
-          {{ section.settings.hero_secondary_button_text | default: "Neue Produkte ansehen" }}
+          {{ section.settings.hero_secondary_button_text }}
         </a>
       </div>
     </div>
 
     <div class="hero-grid-footer">
-      <p>{{ section.settings.footer_text_1 | default: "Kostenlose Lieferung ab €150" }}</p>
-      <p>{{ section.settings.footer_text_2 | default: "Versand in ganz Deutschland und der EU" }}</p>
-      <p>{{ section.settings.footer_text_3 | default: "Hoch bewertet" }}</p>
+      <p>{{ section.settings.hero_footer_text_1 }}</p>
+      <p>{{ section.settings.hero_footer_text_2 }}</p>
+      <p>{{ section.settings.hero_footer_text_3 }}</p>
     </div>
   </div>
 
@@ -386,8 +386,25 @@
     {
       "type": "url",
       "id": "hero_secondary_button_link",
-      "label": "Secondary Button Link",
-      "default": "/collections/new"
+      "label": "Secondary Button Link"
+    },
+    {
+      "type": "text",
+      "id": "hero_footer_text_1",
+      "label": "Footer Text 1",
+      "default": "Kostenlose Lieferung ab €150"
+    },
+    {
+      "type": "text",
+      "id": "hero_footer_text_2",
+      "label": "Footer Text 2",
+      "default": "Versand in ganz Deutschland und der EU"
+    },
+    {
+      "type": "text",
+      "id": "hero_footer_text_3",
+      "label": "Footer Text 3",
+      "default": "Hoch bewertet"
     }
   ],
   "blocks": [
