@@ -12,15 +12,6 @@
     "hero_slider_wUwKkH": {
       "type": "hero-slider",
       "blocks": {
-        "left_slide_1_z8N3zR": {
-          "type": "left_slide_1",
-          "settings": {
-            "product": "stara-sokolova-quitte-alk-40-0-7-l",
-            "label": "",
-            "custom_title": "",
-            "custom_url": ""
-          }
-        },
         "left_slide_1_wacnb8": {
           "type": "left_slide_1",
           "settings": {
@@ -205,7 +196,6 @@
         }
       },
       "block_order": [
-        "left_slide_1_z8N3zR",
         "left_slide_1_wacnb8",
         "left_slide_1_3XrgNc",
         "left_slide_1_cgNpNC",
