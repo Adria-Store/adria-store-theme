@@ -255,26 +255,6 @@
             "custom_title": "",
             "custom_url": ""
           }
-        },
-        "right_slide_2_NiNzGr": {
-          "type": "right_slide_2",
-          "disabled": true,
-          "settings": {
-            "product": "karamell-sauce-trileche-400-g",
-            "label": "",
-            "custom_title": "",
-            "custom_url": ""
-          }
-        },
-        "right_slide_2_TMzwWE": {
-          "type": "right_slide_2",
-          "disabled": true,
-          "settings": {
-            "product": "poli-salama-haehnchenwurst-500g",
-            "label": "",
-            "custom_title": "",
-            "custom_url": ""
-          }
         }
       },
       "block_order": [
@@ -304,9 +284,7 @@
         "right_slide_2_zyQHN3",
         "right_slide_2_gzHn6y",
         "right_slide_2_iyLinC",
-        "right_slide_2_zqYxMq",
-        "right_slide_2_NiNzGr",
-        "right_slide_2_TMzwWE"
+        "right_slide_2_zqYxMq"
       ],
       "settings": {
         "hero_title": "Authentische Spezialitäten vom Balkan - Direkt an Ihre Haustür geliefert",
