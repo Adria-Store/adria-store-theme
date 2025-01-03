@@ -154,11 +154,9 @@
   <!-- Center Content -->
   <div class="hero-layout-content">
     <div class="hero-grid-notice">
-      {% if section.settings.notice_image %}
-        <img src="{{ section.settings.notice_image | file_url }}" alt="Notice Image">
-        {% else %}
-        <img src="https://cdn.shopify.com/s/files/1/0640/4004/2755/files/made-by-hero.png?v=1735858786" alt="Default Notice Image">
-      {% endif %}
+      {% if section.settings.hero_notice_image %}
+        <img src="{{ section.settings.hero_notice_image | img_url: '400x' }}" alt="Notice Image">
+      {% endif %}      
     </div>
     
     <div class="hero-grid-header">
@@ -175,9 +173,7 @@
         <a href="{{ section.settings.hero_secondary_button_link }}" class="hero-grid-btn hero-grid-btn-secondary">
           <span class="hero-grid-icon">
             {% if section.settings.hero_secondary_button_icon %}
-            <img src="{{ section.settings.hero_secondary_button_icon | file_url }}" alt="Button Icon">
-            {% else %}
-            <img src="assets/label-new-icon.svg" alt="New Icon">
+            <img src="{{ section.settings.hero_secondary_button_icon | img_url: '200x' }}" alt="Button Icon">
             {% endif %}
           </span>
           {{ section.settings.hero_secondary_button_text }}
@@ -354,6 +350,11 @@
       "content": "14 slides per hero layout, 7/7, Automatically duplicated slides, add only 7 slides per side"
     },
     {
+      "type": "image_picker",
+      "id": "hero_notice_image",
+      "label": "Notice Image",
+    },
+    {
       "type": "text",
       "id": "hero_title",
       "label": "Hero Title",
@@ -387,6 +388,11 @@
       "type": "url",
       "id": "hero_secondary_button_link",
       "label": "Secondary Button Link"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_secondary_button_icon",
+      "label": "Secondary Button Icon"
     },
     {
       "type": "text",
