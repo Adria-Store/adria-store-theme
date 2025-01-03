@@ -196,10 +196,11 @@
         "right_slide_1_KyXwyP": {
           "type": "right_slide_1",
           "settings": {
-            "product": "stara-sokolova-aprikose-7j-40-07l",
+            "product": "",
             "label": "",
-            "custom_title": "",
-            "custom_url": ""
+            "custom_image": "shopify://shop_images/stara-sokolova-sljiva-sljivovica-plum.jpg",
+            "custom_title": "Stara Sokolova Plum Brandy 7Y Alk. 40% vol. 0.7L",
+            "custom_url": "shopify://products/stara-sokolova-pflaumenbrand-alk-40-vol-07-l"
           }
         }
       },
