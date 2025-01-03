@@ -14270,6 +14270,7 @@ shopify-payment-terms {
   color: #FFFFFF;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .hero-grid-btn-primary:hover {
@@ -14282,6 +14283,7 @@ shopify-payment-terms {
   border: 2px solid var(--header-accent-color);
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .hero-grid-btn-secondary:hover {
