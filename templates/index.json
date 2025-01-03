@@ -217,12 +217,14 @@
         "right_slide_1_KyXwyP"
       ],
       "settings": {
+        "hero_notice_image": "shopify://shop_images/made-by-hero.png",
         "hero_title": "Authentische Spezialitäten vom Balkan - Direkt an Ihre Haustür geliefert",
         "hero_subtitle": "Von Wein und Rakija bis zu Käse und Ajvar – Ihr Onlineshop im Herzen Hamburgs",
         "hero_primary_button_text": "Entdecken Sie alle Kategorien",
         "hero_primary_button_link": "shopify://collections",
         "hero_secondary_button_text": "Neue Produkte ansehen",
         "hero_secondary_button_link": "shopify://collections/new-arrivals",
+        "hero_secondary_button_icon": "shopify://shop_images/label-new-icon.svg",
         "hero_footer_text_1": "Kostenlose Lieferung ab €150",
         "hero_footer_text_2": "Versand in ganz Deutschland und der EU",
         "hero_footer_text_3": "Hoch bewertet"
