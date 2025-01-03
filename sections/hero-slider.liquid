@@ -28,9 +28,13 @@
                   </div>
                   <div class="hero-grid-product-card-info">
                     {% if block.settings.product %}
-                    <div class="hero-grid-product-card-title">
-                      {{ all_products[block.settings.product].title }}
-                    </div>
+                      <div class="hero-grid-product-card-title">
+                        {% if block.settings.custom_title and block.settings.custom_title != "" %}
+                          {{ block.settings.custom_title }}
+                        {% else %}
+                          {{ all_products[block.settings.product].title }}
+                        {% endif %}
+                      </div>
                     {% endif %}
                   </div> 
                 </div>
@@ -59,9 +63,13 @@
                   </div>
                   <div class="hero-grid-product-card-info">
                     {% if block.settings.product %}
-                    <div class="hero-grid-product-card-title">
-                      {{ all_products[block.settings.product].title }}
-                    </div>
+                      <div class="hero-grid-product-card-title">
+                        {% if block.settings.custom_title and block.settings.custom_title != "" %}
+                          {{ block.settings.custom_title }}
+                        {% else %}
+                          {{ all_products[block.settings.product].title }}
+                        {% endif %}
+                      </div>
                     {% endif %}
                   </div> 
                 </div>
@@ -216,9 +224,13 @@
                 </div>
                 <div class="hero-grid-product-card-info">
                   {% if block.settings.product %}
-                  <div class="hero-grid-product-card-title">
-                    {{ all_products[block.settings.product].title }}
-                  </div>
+                    <div class="hero-grid-product-card-title">
+                      {% if block.settings.custom_title and block.settings.custom_title != "" %}
+                        {{ block.settings.custom_title }}
+                      {% else %}
+                        {{ all_products[block.settings.product].title }}
+                      {% endif %}
+                    </div>
                   {% endif %}
                   <div class="hero-grid-product-card-colors">
                     {% assign color_array = block.settings.colors | split: ',' %}
@@ -253,9 +265,13 @@
                 </div>
                 <div class="hero-grid-product-card-info">
                   {% if block.settings.product %}
-                  <div class="hero-grid-product-card-title">
-                    {{ all_products[block.settings.product].title }}
-                  </div>
+                    <div class="hero-grid-product-card-title">
+                      {% if block.settings.custom_title and block.settings.custom_title != "" %}
+                        {{ block.settings.custom_title }}
+                      {% else %}
+                        {{ all_products[block.settings.product].title }}
+                      {% endif %}
+                    </div>
                   {% endif %}
                   <div class="hero-grid-product-card-colors">
                     {% assign color_array = block.settings.colors | split: ',' %}
@@ -296,9 +312,13 @@
                 </div>
                 <div class="hero-grid-product-card-info">
                   {% if block.settings.product %}
-                  <div class="hero-grid-product-card-title">
-                    {{ all_products[block.settings.product].title }}
-                  </div>
+                    <div class="hero-grid-product-card-title">
+                      {% if block.settings.custom_title and block.settings.custom_title != "" %}
+                        {{ block.settings.custom_title }}
+                      {% else %}
+                        {{ all_products[block.settings.product].title }}
+                      {% endif %}
+                    </div>
                   {% endif %}
                 </div> 
               </div>
@@ -327,9 +347,13 @@
                 </div>
                 <div class="hero-grid-product-card-info">
                   {% if block.settings.product %}
-                  <div class="hero-grid-product-card-title">
-                    {{ all_products[block.settings.product].title }}
-                  </div>
+                    <div class="hero-grid-product-card-title">
+                      {% if block.settings.custom_title and block.settings.custom_title != "" %}
+                        {{ block.settings.custom_title }}
+                      {% else %}
+                        {{ all_products[block.settings.product].title }}
+                      {% endif %}
+                    </div>
                   {% endif %}
                 </div> 
               </div>
