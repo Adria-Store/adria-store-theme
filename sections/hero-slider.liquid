@@ -277,8 +277,8 @@
     <!-- Right side, slider 2 -->
     <div class="hero-grid-slider">
       <div class="hero-grid-slide-track">
-        {% assign right_slide_2_blocks = section.blocks | where: 'type', 'right_slide_2' %}
-        {% for block in right_slide_2_blocks %}
+        {% assign left_slide_1_blocks = section.blocks | where: 'type', 'left_slide_1' %}
+        {% for block in left_slide_1_blocks %}
           <a href="{% if block.settings.custom_url and block.settings.custom_url != '' %}
             {{ block.settings.custom_url }}
           {% else %}
@@ -309,7 +309,7 @@
             </div>
           </a>
         {% endfor %}
-        {% for block in right_slide_2_blocks %}
+        {% for block in left_slide_1_blocks %}
           <a href="{% if block.settings.custom_url and block.settings.custom_url != '' %}
             {{ block.settings.custom_url }}
           {% else %}
