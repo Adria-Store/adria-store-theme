@@ -9,6 +9,324 @@
  */
 {
   "sections": {
+    "hero_slider_wUwKkH": {
+      "type": "hero-slider",
+      "blocks": {
+        "left_slide_1_z8N3zR": {
+          "type": "left_slide_1",
+          "settings": {
+            "product": "stara-sokolova-quitte-alk-40-0-7-l",
+            "label": "",
+            "custom_title": "",
+            "custom_url": ""
+          }
+        },
+        "left_slide_1_wacnb8": {
+          "type": "left_slide_1",
+          "settings": {
+            "product": "maksuzija-dubioza-zwetschgenschnaps-alk-40-vol-0-7l",
+            "label": "",
+            "custom_title": "",
+            "custom_url": ""
+          }
+        },
+        "left_slide_1_3XrgNc": {
+          "type": "left_slide_1",
+          "settings": {
+            "product": "niksicko-pivo-bier",
+            "label": "",
+            "custom_title": "",
+            "custom_url": ""
+          }
+        },
+        "left_slide_1_cgNpNC": {
+          "type": "left_slide_1",
+          "settings": {
+            "product": "tvrdos-hochwertiger-rotwein-14-vol-075-l",
+            "label": "",
+            "custom_title": "",
+            "custom_url": ""
+          }
+        },
+        "left_slide_1_iqjjYR": {
+          "type": "left_slide_1",
+          "settings": {
+            "product": "lovacka-pileca-pasteta-100-g",
+            "label": "",
+            "custom_title": "",
+            "custom_url": ""
+          }
+        },
+        "left_slide_1_L3LAGf": {
+          "type": "left_slide_1",
+          "settings": {
+            "product": "cokolino-schokolino-200g",
+            "label": "",
+            "custom_title": "",
+            "custom_url": ""
+          }
+        },
+        "left_slide_1_AHCPth": {
+          "type": "left_slide_1",
+          "settings": {
+            "product": "pecena-mesnata-slanina",
+            "label": "",
+            "custom_title": "",
+            "custom_url": ""
+          }
+        },
+        "left_slide_2_8GFP3k": {
+          "type": "left_slide_2",
+          "settings": {
+            "product": "guarana-energiegetraenk-033l",
+            "label": "",
+            "custom_title": "",
+            "custom_url": ""
+          }
+        },
+        "left_slide_2_JAWiqj": {
+          "type": "left_slide_2",
+          "settings": {
+            "product": "bajadera-likor-badel-liker-bajadera-0-7l-alk-16",
+            "label": "",
+            "custom_title": "",
+            "custom_url": ""
+          }
+        },
+        "left_slide_2_gEYD8k": {
+          "type": "left_slide_2",
+          "settings": {
+            "product": "vipa-chicken-snacks-140g",
+            "label": "",
+            "custom_title": "",
+            "custom_url": ""
+          }
+        },
+        "left_slide_2_8hDGHe": {
+          "type": "left_slide_2",
+          "settings": {
+            "product": "crnogorski-govedji-prsut-franca",
+            "label": "",
+            "custom_title": "",
+            "custom_url": ""
+          }
+        },
+        "left_slide_2_LKrRDm": {
+          "type": "left_slide_2",
+          "settings": {
+            "product": "malvazija-istarska-vina-laguna-125-vol-075-l",
+            "label": "",
+            "custom_title": "",
+            "custom_url": ""
+          }
+        },
+        "left_slide_2_yWeDez": {
+          "type": "left_slide_2",
+          "settings": {
+            "product": "ketchup-zvijezda-500g",
+            "label": "",
+            "custom_title": "",
+            "custom_url": ""
+          }
+        },
+        "left_slide_2_rdzGwj": {
+          "type": "left_slide_2",
+          "settings": {
+            "product": "jana-ice-tea-sumsko-voce",
+            "label": "",
+            "custom_title": "",
+            "custom_url": ""
+          }
+        },
+        "right_slide_1_EfCjih": {
+          "type": "right_slide_1",
+          "settings": {
+            "product": "eurocrem-300g",
+            "label": "",
+            "custom_title": "",
+            "custom_url": ""
+          }
+        },
+        "right_slide_1_WCznte": {
+          "type": "right_slide_1",
+          "settings": {
+            "product": "rinderrauchfleisch-brajlovic-stueck",
+            "label": "",
+            "custom_title": "",
+            "custom_url": ""
+          }
+        },
+        "right_slide_1_7j3T6c": {
+          "type": "right_slide_1",
+          "settings": {
+            "product": "duel-blue-diamond-1-7l",
+            "label": "",
+            "custom_title": "",
+            "custom_url": ""
+          }
+        },
+        "right_slide_1_AmzGEP": {
+          "type": "right_slide_1",
+          "settings": {
+            "product": "vegeta-gewuerz-250g",
+            "label": "",
+            "custom_title": "",
+            "custom_url": ""
+          }
+        },
+        "right_slide_1_8ygGEG": {
+          "type": "right_slide_1",
+          "settings": {
+            "product": "cedevita-bazga-limun-holunder-zitrone-900-g",
+            "label": "",
+            "custom_title": "",
+            "custom_url": ""
+          }
+        },
+        "right_slide_1_C9Xcb7": {
+          "type": "right_slide_1",
+          "settings": {
+            "product": "jufka-jami-teigblaetter-450-g",
+            "label": "",
+            "custom_title": "",
+            "custom_url": ""
+          }
+        },
+        "right_slide_1_M7QnQN": {
+          "type": "right_slide_1",
+          "settings": {
+            "product": "jufka-jami-teigblaetter-450-g",
+            "label": "",
+            "custom_title": "",
+            "custom_url": ""
+          }
+        },
+        "right_slide_1_KyXwyP": {
+          "type": "right_slide_1",
+          "settings": {
+            "product": "stara-sokolova-aprikose-7j-40-07l",
+            "label": "",
+            "custom_title": "",
+            "custom_url": ""
+          }
+        },
+        "right_slide_2_9UArEq": {
+          "type": "right_slide_2",
+          "settings": {
+            "product": "ozujsko-grejp-0-50-l",
+            "label": "",
+            "custom_title": "",
+            "custom_url": ""
+          }
+        },
+        "right_slide_2_xJeD4c": {
+          "type": "right_slide_2",
+          "settings": {
+            "product": "hell-energy-drink-black-cherry-250ml",
+            "label": "",
+            "custom_title": "",
+            "custom_url": ""
+          }
+        },
+        "right_slide_2_zyQHN3": {
+          "type": "right_slide_2",
+          "settings": {
+            "product": "smuk-premium-pflaumenbrand-alk-41-vol-0-7l",
+            "label": "",
+            "custom_title": "",
+            "custom_url": ""
+          }
+        },
+        "right_slide_2_gzHn6y": {
+          "type": "right_slide_2",
+          "settings": {
+            "product": "dedova-rakija-opas-brandy-alk-390-vol-075-l",
+            "label": "",
+            "custom_title": "",
+            "custom_url": ""
+          }
+        },
+        "right_slide_2_iyLinC": {
+          "type": "right_slide_2",
+          "settings": {
+            "product": "dedova-rakija-opas-brandy-alk-390-vol-075-l",
+            "label": "",
+            "custom_title": "",
+            "custom_url": ""
+          }
+        },
+        "right_slide_2_zqYxMq": {
+          "type": "right_slide_2",
+          "settings": {
+            "product": "teran-kozlovic-alk-13-vol-075-l",
+            "label": "",
+            "custom_title": "",
+            "custom_url": ""
+          }
+        },
+        "right_slide_2_NiNzGr": {
+          "type": "right_slide_2",
+          "settings": {
+            "product": "karamell-sauce-trileche-400-g",
+            "label": "",
+            "custom_title": "",
+            "custom_url": ""
+          }
+        },
+        "right_slide_2_TMzwWE": {
+          "type": "right_slide_2",
+          "settings": {
+            "product": "poli-salama-haehnchenwurst-500g",
+            "label": "",
+            "custom_title": "",
+            "custom_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "left_slide_1_z8N3zR",
+        "left_slide_1_wacnb8",
+        "left_slide_1_3XrgNc",
+        "left_slide_1_cgNpNC",
+        "left_slide_1_iqjjYR",
+        "left_slide_1_L3LAGf",
+        "left_slide_1_AHCPth",
+        "left_slide_2_8GFP3k",
+        "left_slide_2_JAWiqj",
+        "left_slide_2_gEYD8k",
+        "left_slide_2_8hDGHe",
+        "left_slide_2_LKrRDm",
+        "left_slide_2_yWeDez",
+        "left_slide_2_rdzGwj",
+        "right_slide_1_EfCjih",
+        "right_slide_1_WCznte",
+        "right_slide_1_7j3T6c",
+        "right_slide_1_AmzGEP",
+        "right_slide_1_8ygGEG",
+        "right_slide_1_C9Xcb7",
+        "right_slide_1_M7QnQN",
+        "right_slide_1_KyXwyP",
+        "right_slide_2_9UArEq",
+        "right_slide_2_xJeD4c",
+        "right_slide_2_zyQHN3",
+        "right_slide_2_gzHn6y",
+        "right_slide_2_iyLinC",
+        "right_slide_2_zqYxMq",
+        "right_slide_2_NiNzGr",
+        "right_slide_2_TMzwWE"
+      ],
+      "settings": {
+        "hero_title": "Authentische Spezialitäten vom Balkan - Direkt an Ihre Haustür geliefert",
+        "hero_subtitle": "Von Wein und Rakija bis zu Käse und Ajvar – Ihr Onlineshop im Herzen Hamburgs",
+        "hero_primary_button_text": "Entdecken Sie alle Kategorien",
+        "hero_primary_button_link": "shopify://collections",
+        "hero_secondary_button_text": "Neue Produkte ansehen",
+        "hero_secondary_button_link": "shopify://collections/new-arrivals",
+        "hero_footer_text_1": "Kostenlose Lieferung ab €150",
+        "hero_footer_text_2": "Versand in ganz Deutschland und der EU",
+        "hero_footer_text_3": "Hoch bewertet"
+      }
+    },
     "slideshow": {
       "type": "slideshow",
       "blocks": {
@@ -50,6 +368,7 @@
         "de43216c-c6ef-423b-a212-8f2602025214",
         "slide-2"
       ],
+      "disabled": true,
       "settings": {
         "edge_to_edge": true,
         "section_size": "medium",
@@ -392,6 +711,7 @@
     }
   },
   "order": [
+    "hero_slider_wUwKkH",
     "slideshow",
     "1652620699e1d55b5d",
     "165253251733c6586d",
