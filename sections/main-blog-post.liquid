@@ -91,6 +91,8 @@
         {%- endif -%}
 
         <div class="article__inner">
+          {% comment %} Capture product handles from the metafield {% endcomment %}
+          {% assign linked_products = article.metafields.custom.linked_products.value %}
           <div class="article__content rte">
             {{ article.content }}
           </div>
@@ -657,3 +659,63 @@
   ]
 }
 {% endschema %}
+
+{% comment %} Logic for displaying selected blog product {% endcomment %}
+<script>
+  // Pass product handles to JavaScript
+  window.blogPostProducts = [
+    {% for product in linked_products %}
+      { 
+        handle: "{{ product.handle }}",
+        title: "{{ product.title | escape }}",
+        price: "{{ product.price | money_with_currency }}",
+        url: "{{ product.url }}",
+        image: "{{ product.featured_image | img_url: '400x400' }}",
+        vendor: "{{ product.vendor | escape }}",
+        available: {{ product.available | json }},
+        inventory_quantity: {{ product.variants.first.inventory_quantity | json }}
+      }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ];
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const productContainers = document.querySelectorAll('.dynamic-product');
+  
+    productContainers.forEach(container => {
+      const index = container.dataset.productIndex;
+      const product = window.blogPostProducts[index];
+  
+      if (!product) {
+        container.innerHTML = '';
+        return;
+      }
+  
+      // Determine stock status
+      let stockText = '';
+      let stockStatus = '';
+      if (product.available) {
+        stockStatus = 'in-stock';
+        stockText = 'Auf Lager';
+        if (product.inventory_quantity > 0) {
+          stockText += `, ${product.inventory_quantity} Stück`;
+        }
+      } else {
+        stockStatus = 'out-of-stock';
+        stockText = 'Ausverkauft';
+      }
+  
+      // Build HTML with data-stock-status
+      container.innerHTML = `
+        <div class="blog-product-card">
+          <a href="${product.url}" class="blog-product-card__link">
+            <img src="${product.image}" alt="${product.title}" class="blog-product-card__image" loading="lazy">
+            <p class="blog-product-card__vendor">${product.vendor}</p>
+            <h3 class="blog-product-card__title">${product.title}</h3>
+            <p class="blog-product-card__price">${product.price}</p>
+            <p class="blog-product-card__stock" data-stock-status="${stockStatus}">${stockText}</p>
+          </a>
+        </div>
+      `;
+    });
+  });
+</script>
