@@ -111,17 +111,6 @@
     },
     "product-recommendations": {
       "type": "product-recommendations",
-      "blocks": {
-        "product_GDzd4w": {
-          "type": "product",
-          "settings": {
-            "product": "adria-store-gift-card"
-          }
-        }
-      },
-      "block_order": [
-        "product_GDzd4w"
-      ],
       "settings": {
         "heading": "Das könnte Sie auch interessieren",
         "show_quick_buy": false

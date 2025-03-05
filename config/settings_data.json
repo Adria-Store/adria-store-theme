@@ -41,6 +41,7 @@
     "heading_font": "itc_avant_garde_gothic_n5",
     "text_font": "basic_commercial_n4",
     "underline_links": true,
+    "currency_code_enabled": false,
     "animation_image_zoom": true,
     "search_mode": "product,article,page",
     "search_unavailable_products": "last",
