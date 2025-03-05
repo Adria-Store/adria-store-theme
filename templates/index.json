@@ -556,7 +556,7 @@
     "16525485416a21adb7": {
       "type": "collection-with-image",
       "settings": {
-        "collection": "trend",
+        "collection": "new-arrivals",
         "products_count": 12,
         "show_quick_buy": false,
         "image": "shopify://shop_images/made-by-png.png",
