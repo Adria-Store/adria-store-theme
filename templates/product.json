@@ -112,15 +112,15 @@
     "product-recommendations": {
       "type": "product-recommendations",
       "blocks": {
-        "product_jNFTRw": {
+        "product_GDzd4w": {
           "type": "product",
           "settings": {
-            "product": "arabesca-kaffee-250-g"
+            "product": "adria-store-gift-card"
           }
         }
       },
       "block_order": [
-        "product_jNFTRw"
+        "product_GDzd4w"
       ],
       "settings": {
         "heading": "Das könnte Sie auch interessieren",
