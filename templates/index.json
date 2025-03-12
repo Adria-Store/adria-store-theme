@@ -496,24 +496,6 @@
     "16524825715e02299f": {
       "type": "promotion-list",
       "blocks": {
-        "1652482571306a3be1-2": {
-          "type": "item",
-          "settings": {
-            "image": "shopify://shop_images/adria-promo-block-gift-card.jpg",
-            "show_overlay": true,
-            "overlay_opacity": 35,
-            "stretch_image": true,
-            "background": "#ff4500",
-            "text_color": "#ffffff",
-            "title": "Adria Store Geschenkkarte",
-            "content": "<p>Ihr Ticket zu einer kulinarischen Reise durch die Aromen des Balkans!</p>",
-            "content_position": "top_left",
-            "button_background": "#ffffff",
-            "button_text_color": "#ff4500",
-            "button_text": "mehr",
-            "button_link": "shopify://products/adria-store-gift-card"
-          }
-        },
         "1652482571306a3be1-1": {
           "type": "item",
           "settings": {
@@ -530,6 +512,24 @@
             "button_text_color": "#cf9844",
             "button_text": "mehr",
             "button_link": "https://adria-store.de/collections/vendors?q=BCA%20d.o.o"
+          }
+        },
+        "1652482571306a3be1-2": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/adria-promo-block-gift-card.jpg",
+            "show_overlay": true,
+            "overlay_opacity": 35,
+            "stretch_image": true,
+            "background": "#ff4500",
+            "text_color": "#ffffff",
+            "title": "Adria Store Geschenkkarte",
+            "content": "<p>Ihr Ticket zu einer kulinarischen Reise durch die Aromen des Balkans!</p>",
+            "content_position": "top_left",
+            "button_background": "#ffffff",
+            "button_text_color": "#ff4500",
+            "button_text": "mehr",
+            "button_link": "shopify://products/adria-store-gift-card"
           }
         },
         "1652482571306a3be1-0": {
@@ -552,8 +552,8 @@
         }
       },
       "block_order": [
-        "1652482571306a3be1-2",
         "1652482571306a3be1-1",
+        "1652482571306a3be1-2",
         "1652482571306a3be1-0"
       ],
       "settings": {
