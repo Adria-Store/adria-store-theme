@@ -343,6 +343,14 @@
     "165253251733c6586d": {
       "type": "collection-list",
       "blocks": {
+        "collection_nVy9VR": {
+          "type": "collection",
+          "settings": {
+            "collection": "kreative-ausstechformen-modlice",
+            "image": "shopify://shop_images/modlice-Collections---Preview-Rounded.jpg",
+            "link": ""
+          }
+        },
         "1652532517c918bb80-1": {
           "type": "collection",
           "settings": {
@@ -449,6 +457,7 @@
         }
       },
       "block_order": [
+        "collection_nVy9VR",
         "1652532517c918bb80-1",
         "1652532517c918bb80-2",
         "1652532517c918bb80-3",
