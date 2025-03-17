@@ -168,10 +168,10 @@
         "settings": {
           "show_announcement": true,
           "background": "#3a2a2f",
-          "text_color": "#ffffff",
-          "text": "",
+          "text_color": "#f8e1c4",
+          "text": "Neue Kollektion: Modlice & Ausstechformen!",
           "text_position": "left",
-          "link": "",
+          "link": "shopify://collections/kreative-ausstechformen-modlice",
           "show_newsletter": true,
           "newsletter_button": "Abonnieren & Sparen",
           "newsletter_title": "Newsletter",
