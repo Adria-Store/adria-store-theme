@@ -105,7 +105,7 @@
           "show_locale_selector": true,
           "show_country_selector": false,
           "navigation_menu": "main-menu",
-          "navigation_mobile_menu": "",
+          "navigation_mobile_menu": "main-menu-mobile",
           "desktop_navigation_layout": "inline",
           "desktop_navigation_open_trigger": "hover",
           "show_navigation_social_media": true,
