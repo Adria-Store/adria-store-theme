@@ -2432,8 +2432,8 @@ img.lazyload[data-sizes=auto] {
 .button {
   position: relative;
   display: inline-block;
-  padding: 0 30px;
-  line-height: 48px;
+  padding: 16px 30px;
+  line-height: normal;
   border-radius: 2px;
   text-align: center;
   font-weight: var(--text-font-bolder-weight);
@@ -2447,24 +2447,23 @@ img.lazyload[data-sizes=auto] {
 }
 
 .button--extra-small {
-  padding: 0 15px;
+  padding: 10px 15px;
   font-size: calc(var(--base-text-font-size) - (var(--default-text-font-size) - 14px));
-  line-height: 34px;
 }
 
 .button--small {
   font-size: calc(var(--base-text-font-size) - (var(--default-text-font-size) - 14px));
-  line-height: 42px;
+  padding-block: 14px;
 }
 
 .button--large {
   font-size: calc(var(--base-text-font-size) - (var(--default-text-font-size) - 16px));
-  line-height: 55px;
+  padding-block: 20px;
 }
 
 .button--extra-large {
   font-size: calc(var(--base-text-font-size) - (var(--default-text-font-size) - 18px));
-  line-height: 60px;
+  padding-block: 22px;
 }
 
 .button--primary {
