@@ -183,13 +183,12 @@
         "blocks": {
           "0e10c35f-e95f-4d59-973b-1445b71960cb": {
             "type": "newsletter",
-            "disabled": true,
             "settings": {
               "show_only_on_index": false,
               "show_only_for_visitors": false,
               "show_only_once": true,
-              "title": "VERSANDINFO ZU SILVESTER",
-              "content": "<p>All Ihre Bestellungen, die bis zum 26. Dezember eintreffen und bezahlt sind werden am 27. Dezember versandt, sodass sie noch, mit großer Wahrscheinlichkeit vor Weihnachten bei Ihnen eintreffen.</p>",
+              "title": "Versand über die Feiertage",
+              "content": "<p><strong>Weihnachten</strong>: Alle Bestellungen, die bis <em><strong>22. Dezember</strong></em><strong>, </strong><em><strong>12:00 Uhr</strong></em>, eingehen und bezahlt sind, werden vor Weihnachten versendet.</p><p><strong>Silvester</strong>: Alle Bestellungen, die bis <em><strong>29. Dezember, 12:00 Uhr</strong></em>, eingehen und bezahlt sind, werden vor Silvester versendet.</p>",
               "show_newsletter": false,
               "apparition_delay": 2
             }
