@@ -1,0 +1,504 @@
+{%- comment -%}
+  Adria Store Chatbot Widget
+  Version: 1.0
+  Backend: https://n8n.obojanai-automation.cloud/webhook/chatbot
+
+  INSTALL:
+  1. Snimi ovaj fajl kao snippets/chatbot-widget.liquid u Shopify temi
+  2. U layout/theme.liquid, prije </body> tag-a, dodaj:
+     {% render 'chatbot-widget' %}
+  3. Zamijeni TURNSTILE_SITE_KEY_PLACEHOLDER sa pravim site key-em sa Cloudflare
+{%- endcomment -%}
+
+<!-- Cloudflare Turnstile -->
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
+
+<style>
+/* ============ ADRIA CHATBOT STYLES ============ */
+.adria-chat-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: #F97316;
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  padding: 14px 20px 14px 16px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 999998;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.adria-chat-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+}
+.adria-chat-btn.hidden { display: none; }
+.adria-chat-btn svg {
+  width: 22px;
+  height: 22px;
+}
+
+.adria-chat-window {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 380px;
+  height: 560px;
+  max-height: calc(100vh - 48px);
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 999999;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+.adria-chat-window.open { display: flex; }
+
+.adria-chat-header {
+  background: #1F2937;
+  color: #fff;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.adria-chat-header-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  font-size: 15px;
+}
+.adria-chat-header-title .dot {
+  width: 8px;
+  height: 8px;
+  background: #22c55e;
+  border-radius: 50%;
+  display: inline-block;
+}
+.adria-chat-close {
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  padding: 4px;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+.adria-chat-close:hover { opacity: 1; }
+.adria-chat-close svg { width: 18px; height: 18px; }
+
+.adria-chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  background: #F9FAFB;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.adria-chat-msg {
+  max-width: 80%;
+  padding: 10px 14px;
+  border-radius: 16px;
+  font-size: 14px;
+  line-height: 1.45;
+  word-wrap: break-word;
+}
+.adria-chat-msg.bot {
+  background: #fff;
+  border: 1px solid #E5E7EB;
+  color: #1F2937;
+  align-self: flex-start;
+  border-bottom-left-radius: 4px;
+}
+.adria-chat-msg.user {
+  background: #F97316;
+  color: #fff;
+  align-self: flex-end;
+  border-bottom-right-radius: 4px;
+}
+.adria-chat-msg.error {
+  background: #FEE2E2;
+  color: #991B1B;
+  align-self: flex-start;
+  font-size: 13px;
+}
+.adria-chat-msg.system {
+  background: #EFF6FF;
+  color: #1E40AF;
+  align-self: center;
+  font-size: 12px;
+  font-style: italic;
+  text-align: center;
+  max-width: 90%;
+}
+.adria-chat-msg a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+.adria-chat-typing {
+  display: none;
+  align-self: flex-start;
+  background: #fff;
+  border: 1px solid #E5E7EB;
+  border-radius: 16px;
+  border-bottom-left-radius: 4px;
+  padding: 10px 14px;
+}
+.adria-chat-typing.show { display: inline-block; }
+.adria-chat-typing span {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  background: #9CA3AF;
+  border-radius: 50%;
+  margin-right: 3px;
+  animation: adria-pulse 1.4s infinite;
+}
+.adria-chat-typing span:nth-child(2) { animation-delay: 0.2s; }
+.adria-chat-typing span:nth-child(3) { animation-delay: 0.4s; margin-right: 0; }
+@keyframes adria-pulse {
+  0%, 60%, 100% { opacity: 0.3; }
+  30% { opacity: 1; }
+}
+
+.adria-chat-input-bar {
+  padding: 12px;
+  background: #fff;
+  border-top: 1px solid #E5E7EB;
+  display: flex;
+  gap: 8px;
+  align-items: flex-end;
+}
+.adria-chat-input {
+  flex: 1;
+  border: 1px solid #D1D5DB;
+  border-radius: 20px;
+  padding: 10px 14px;
+  font-size: 14px;
+  font-family: inherit;
+  resize: none;
+  max-height: 100px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.adria-chat-input:focus { border-color: #F97316; }
+.adria-chat-input:disabled { background: #F3F4F6; cursor: not-allowed; }
+
+.adria-chat-send {
+  background: #F97316;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.2s;
+}
+.adria-chat-send:hover { background: #EA580C; }
+.adria-chat-send:disabled { background: #D1D5DB; cursor: not-allowed; }
+.adria-chat-send svg { width: 18px; height: 18px; }
+
+.adria-chat-footer {
+  font-size: 11px;
+  color: #9CA3AF;
+  text-align: center;
+  padding: 6px;
+  background: #F9FAFB;
+  border-top: 1px solid #F3F4F6;
+}
+
+#adria-turnstile-container {
+  padding: 16px;
+  text-align: center;
+}
+
+/* Mobile responsive */
+@media (max-width: 480px) {
+  .adria-chat-window {
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    max-height: 100vh;
+    border-radius: 0;
+  }
+  .adria-chat-btn {
+    bottom: 16px;
+    right: 16px;
+  }
+}
+</style>
+
+<!-- Launcher button -->
+<button class="adria-chat-btn" id="adriaChatBtn" aria-label="Open chat">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+  </svg>
+  <span>Chat</span>
+</button>
+
+<!-- Chat window -->
+<div class="adria-chat-window" id="adriaChatWindow" role="dialog" aria-label="Adria Store chat">
+  <div class="adria-chat-header">
+    <div class="adria-chat-header-title">
+      <span class="dot"></span>
+      <span>Adria Store Support</span>
+    </div>
+    <button class="adria-chat-close" id="adriaChatClose" aria-label="Close chat">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+  </div>
+  <div class="adria-chat-messages" id="adriaChatMessages">
+    <!-- messages appear here -->
+  </div>
+  <div id="adria-turnstile-container"></div>
+  <div class="adria-chat-input-bar">
+    <textarea class="adria-chat-input" id="adriaChatInput" rows="1" placeholder="Nachricht..." maxlength="2000" disabled></textarea>
+    <button class="adria-chat-send" id="adriaChatSend" aria-label="Send" disabled>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+      </svg>
+    </button>
+  </div>
+  <div class="adria-chat-footer">Powered by Adria Store</div>
+</div>
+
+<script>
+(function() {
+  'use strict';
+
+  // ============ CONFIG ============
+  const WEBHOOK_URL = 'https://n8n.obojanai-automation.cloud/webhook/chatbot';
+  const TURNSTILE_SITE_KEY = '0x4AAAAAADI3XBKo8WdaeUPo';
+
+  // Welcome messages per language (auto-detected from browser)
+  const WELCOME = {
+    DE: 'Hallo! Wie kann ich Ihnen helfen? Sie können mich zu Versand, Zahlung, Produkten oder Ihrer Bestellung fragen.',
+    SR: 'Zdravo! Kako Vam mogu pomoći? Možete me pitati o dostavi, plaćanju, proizvodima ili Vašoj narudžbi.',
+    EN: 'Hello! How can I help you? You can ask me about shipping, payment, products, or your order.',
+    FR: 'Bonjour ! Comment puis-je vous aider ? Vous pouvez me poser des questions sur la livraison, les paiements, les produits ou votre commande.'
+  };
+  const PLACEHOLDER = { DE: 'Nachricht...', SR: 'Poruka...', EN: 'Message...', FR: 'Message...' };
+  const ERRORS = {
+    network: { DE: 'Verbindungsfehler. Bitte versuchen Sie es erneut.', SR: 'Greška u vezi. Molimo pokušajte ponovo.', EN: 'Connection error. Please try again.', FR: 'Erreur de connexion. Veuillez réessayer.' },
+    general: { DE: 'Etwas ist schief gelaufen. Bitte schreiben Sie uns an info@adria-store.de', SR: 'Nešto je pošlo naopako. Molimo kontaktirajte info@adria-store.de', EN: 'Something went wrong. Please contact info@adria-store.de', FR: "Une erreur s'est produite. Veuillez contacter info@adria-store.de" }
+  };
+
+  // ============ STATE ============
+  const html = document.documentElement;
+  const lang = detectLang();
+  let sessionId = localStorage.getItem('adria_chat_session') || generateId();
+  localStorage.setItem('adria_chat_session', sessionId);
+  let turnstileToken = null;
+  let turnstileWidgetId = null;
+  let turnstileShown = false;
+  let firstMessageSent = false;
+
+  // ============ DOM ============
+  const btn = document.getElementById('adriaChatBtn');
+  const wnd = document.getElementById('adriaChatWindow');
+  const closeBtn = document.getElementById('adriaChatClose');
+  const msgContainer = document.getElementById('adriaChatMessages');
+  const input = document.getElementById('adriaChatInput');
+  const sendBtn = document.getElementById('adriaChatSend');
+  const turnstileContainer = document.getElementById('adria-turnstile-container');
+
+  input.placeholder = PLACEHOLDER[lang] || PLACEHOLDER.DE;
+
+  // ============ EVENTS ============
+  btn.addEventListener('click', openChat);
+  closeBtn.addEventListener('click', closeChat);
+  sendBtn.addEventListener('click', sendMessage);
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      sendMessage();
+    }
+  });
+  input.addEventListener('input', autoResize);
+
+  // ============ FUNCTIONS ============
+  function detectLang() {
+    const l = (navigator.language || 'de').toLowerCase();
+    if (l.startsWith('sr') || l.startsWith('hr') || l.startsWith('bs')) return 'SR';
+    if (l.startsWith('en')) return 'EN';
+    if (l.startsWith('fr')) return 'FR';
+    return 'DE';
+  }
+
+  function generateId() {
+    return 'cs_' + Date.now() + '_' + Math.random().toString(36).slice(2, 11);
+  }
+
+  function openChat() {
+    btn.classList.add('hidden');
+    wnd.classList.add('open');
+    if (msgContainer.children.length === 0) {
+      addMessage('bot', WELCOME[lang] || WELCOME.DE);
+    }
+    if (!turnstileShown && !firstMessageSent) {
+      showTurnstile();
+    }
+    input.focus();
+  }
+
+  function closeChat() {
+    wnd.classList.remove('open');
+    btn.classList.remove('hidden');
+  }
+
+  function showTurnstile() {
+    turnstileShown = true;
+    const tryRender = function() {
+      if (typeof turnstile === 'undefined') {
+        setTimeout(tryRender, 250);
+        return;
+      }
+      turnstileWidgetId = turnstile.render(turnstileContainer, {
+        sitekey: TURNSTILE_SITE_KEY,
+        size: 'flexible',
+        callback: function(token) {
+          turnstileToken = token;
+          turnstileContainer.style.display = 'none';
+          input.disabled = false;
+          sendBtn.disabled = false;
+          input.focus();
+        },
+        'error-callback': function() {
+          addMessage('error', ERRORS.general[lang] || ERRORS.general.DE);
+        }
+      });
+    };
+    tryRender();
+  }
+
+  function addMessage(type, text) {
+    const div = document.createElement('div');
+    div.className = 'adria-chat-msg ' + type;
+    // Linkify: 1) Markdown links [text](url), 2) plain URLs (strip trailing punctuation), 3) emails
+    const linked = text
+      .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>')
+      .replace(/\b(https?:\/\/[^\s<>]+)/g, (match, url) => {
+        const clean = url.replace(/[.,;:!?)»\]]+$/, '');
+        const punct = url.slice(clean.length);
+        return `<a href="${clean}" target="_blank" rel="noopener">${clean}</a>${punct}`;
+      })
+      .replace(/\b([a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})\b/g, '<a href="mailto:$1">$1</a>');
+    div.innerHTML = linked.replace(/\n/g, '<br>');
+    msgContainer.appendChild(div);
+    msgContainer.scrollTop = msgContainer.scrollHeight;
+  }
+
+  function showTyping(show) {
+    let t = document.getElementById('adriaTyping');
+    if (show) {
+      if (!t) {
+        t = document.createElement('div');
+        t.id = 'adriaTyping';
+        t.className = 'adria-chat-typing show';
+        t.innerHTML = '<span></span><span></span><span></span>';
+        msgContainer.appendChild(t);
+        msgContainer.scrollTop = msgContainer.scrollHeight;
+      }
+    } else {
+      if (t) t.remove();
+    }
+  }
+
+  function autoResize() {
+    input.style.height = 'auto';
+    input.style.height = Math.min(input.scrollHeight, 100) + 'px';
+  }
+
+  async function sendMessage() {
+    const text = input.value.trim();
+    if (!text) return;
+    if (!firstMessageSent && !turnstileToken) {
+      addMessage('error', 'Bitte bestätigen Sie die Sicherheitsprüfung.');
+      return;
+    }
+
+    addMessage('user', text);
+    input.value = '';
+    input.style.height = 'auto';
+    input.disabled = true;
+    sendBtn.disabled = true;
+    showTyping(true);
+
+    const payload = {
+      sessionId: sessionId,
+      message: text
+    };
+    if (!firstMessageSent && turnstileToken) {
+      payload.turnstileToken = turnstileToken;
+    }
+
+    try {
+      const res = await fetch(WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      showTyping(false);
+
+      if (!res.ok) {
+        const errText = (await res.text().catch(() => '')) || 'HTTP ' + res.status;
+        console.error('Chatbot error:', errText);
+        addMessage('error', ERRORS.general[lang] || ERRORS.general.DE);
+        input.disabled = false;
+        sendBtn.disabled = false;
+        return;
+      }
+
+      const data = await res.json();
+      firstMessageSent = true;
+
+      if (data.reply) {
+        addMessage('bot', data.reply);
+      }
+
+      if (data.error === 'max_messages') {
+        addMessage('system', 'Session limit reached.');
+        input.disabled = true;
+        sendBtn.disabled = true;
+      } else if (data.error === 'rate_limit') {
+        setTimeout(function() {
+          input.disabled = false;
+          sendBtn.disabled = false;
+        }, 5000);
+      } else {
+        input.disabled = false;
+        sendBtn.disabled = false;
+      }
+      input.focus();
+    } catch (e) {
+      console.error('Chatbot fetch error:', e);
+      showTyping(false);
+      addMessage('error', ERRORS.network[lang] || ERRORS.network.DE);
+      input.disabled = false;
+      sendBtn.disabled = false;
+    }
+  }
+})();
+</script>
