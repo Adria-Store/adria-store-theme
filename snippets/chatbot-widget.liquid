@@ -1,17 +1,7 @@
 {%- comment -%}
   Adria Store Chatbot Widget
-  Version: 9.11 (5. maj 2026 — localStorage chat history persistence)
+  Version: 1.0
   Backend: https://n8n.obojanai-automation.cloud/webhook/chatbot
-
-  v9.11 changes:
-  - Chat history saved to localStorage; restored on page load if < 30 min old
-  - Solves: clicking link → new tab → chat appeared empty + Turnstile re-shown
-  - After fix: full history visible immediately, no re-Turnstile, continue chatting
-  - 30 min TTL matches n8n session TTL
-  - "Reset chat" link in footer for explicit fresh start
-
-  v9.10 changes (zadržano):
-  - Mobile: 100vh → 100dvh, flex-shrink: 0 on header/input-bar
 
   INSTALL:
   1. Snimi ovaj fajl kao snippets/chatbot-widget.liquid u Shopify temi
@@ -233,22 +223,7 @@
   padding: 6px;
   background: #F9FAFB;
   border-top: 1px solid #F3F4F6;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
 }
-.adria-chat-footer .reset-link {
-  color: #9CA3AF;
-  text-decoration: underline;
-  cursor: pointer;
-  background: none;
-  border: none;
-  padding: 0;
-  font-size: 11px;
-  font-family: inherit;
-}
-.adria-chat-footer .reset-link:hover { color: #F97316; }
 
 #adria-turnstile-container {
   padding: 16px;
@@ -307,11 +282,7 @@
       </svg>
     </button>
   </div>
-  <div class="adria-chat-footer">
-    <span>Powered by Adria Store</span>
-    <span>·</span>
-    <button class="reset-link" id="adriaChatReset" aria-label="Reset chat">Neuer Chat</button>
-  </div>
+  <div class="adria-chat-footer">Powered by Adria Store</div>
 </div>
 
 <script>
@@ -321,11 +292,6 @@
   // ============ CONFIG ============
   const WEBHOOK_URL = 'https://n8n.obojanai-automation.cloud/webhook/chatbot';
   const TURNSTILE_SITE_KEY = '0x4AAAAAADI3XBKo8WdaeUPo';
-  const HISTORY_TTL_MS = 30 * 60 * 1000;  // 30 min — matches n8n session TTL
-  const MAX_HISTORY_MESSAGES = 50;
-  const STORAGE_KEY_SESSION = 'adria_chat_session';
-  const STORAGE_KEY_HISTORY = 'adria_chat_history_v2';
-  const STORAGE_KEY_STATE = 'adria_chat_state';
 
   // Welcome messages per language (auto-detected from browser)
   const WELCOME = {
@@ -335,7 +301,6 @@
     FR: 'Bonjour ! Comment puis-je vous aider ? Vous pouvez me poser des questions sur la livraison, les paiements, les produits ou votre commande.'
   };
   const PLACEHOLDER = { DE: 'Nachricht...', SR: 'Poruka...', EN: 'Message...', FR: 'Message...' };
-  const RESET_LABEL = { DE: 'Neuer Chat', SR: 'Novi razgovor', EN: 'New chat', FR: 'Nouveau chat' };
   const ERRORS = {
     network: { DE: 'Verbindungsfehler. Bitte versuchen Sie es erneut.', SR: 'Greška u vezi. Molimo pokušajte ponovo.', EN: 'Connection error. Please try again.', FR: 'Erreur de connexion. Veuillez réessayer.' },
     general: { DE: 'Etwas ist schief gelaufen. Bitte schreiben Sie uns an info@adria-store.de', SR: 'Nešto je pošlo naopako. Molimo kontaktirajte info@adria-store.de', EN: 'Something went wrong. Please contact info@adria-store.de', FR: "Une erreur s'est produite. Veuillez contacter info@adria-store.de" }
@@ -344,8 +309,8 @@
   // ============ STATE ============
   const html = document.documentElement;
   const lang = detectLang();
-  let sessionId = localStorage.getItem(STORAGE_KEY_SESSION) || generateId();
-  localStorage.setItem(STORAGE_KEY_SESSION, sessionId);
+  let sessionId = localStorage.getItem('adria_chat_session') || generateId();
+  localStorage.setItem('adria_chat_session', sessionId);
   let turnstileToken = null;
   let turnstileWidgetId = null;
   let turnstileShown = false;
@@ -359,16 +324,13 @@
   const input = document.getElementById('adriaChatInput');
   const sendBtn = document.getElementById('adriaChatSend');
   const turnstileContainer = document.getElementById('adria-turnstile-container');
-  const resetBtn = document.getElementById('adriaChatReset');
 
   input.placeholder = PLACEHOLDER[lang] || PLACEHOLDER.DE;
-  resetBtn.textContent = RESET_LABEL[lang] || RESET_LABEL.DE;
 
   // ============ EVENTS ============
   btn.addEventListener('click', openChat);
   closeBtn.addEventListener('click', closeChat);
   sendBtn.addEventListener('click', sendMessage);
-  resetBtn.addEventListener('click', resetChat);
   input.addEventListener('keydown', function(e) {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
@@ -390,83 +352,11 @@
     return 'cs_' + Date.now() + '_' + Math.random().toString(36).slice(2, 11);
   }
 
-  // === v9.11: localStorage history persistence ===
-  function saveMessageToHistory(type, text) {
-    try {
-      const h = JSON.parse(localStorage.getItem(STORAGE_KEY_HISTORY) || '[]');
-      h.push({ type: type, text: text, t: Date.now() });
-      if (h.length > MAX_HISTORY_MESSAGES) {
-        h.splice(0, h.length - MAX_HISTORY_MESSAGES);
-      }
-      localStorage.setItem(STORAGE_KEY_HISTORY, JSON.stringify(h));
-    } catch (e) {
-      console.warn('Adria chat: localStorage save failed', e);
-    }
-  }
-
-  function saveState() {
-    try {
-      localStorage.setItem(STORAGE_KEY_STATE, JSON.stringify({
-        firstMessageSent: firstMessageSent,
-        t: Date.now()
-      }));
-    } catch (e) { /* ignore */ }
-  }
-
-  function restoreHistoryFromStorage() {
-    try {
-      const h = JSON.parse(localStorage.getItem(STORAGE_KEY_HISTORY) || '[]');
-      if (!h.length) return false;
-      const lastTime = h[h.length - 1].t;
-      if (Date.now() - lastTime > HISTORY_TTL_MS) {
-        // History stale — wipe
-        localStorage.removeItem(STORAGE_KEY_HISTORY);
-        localStorage.removeItem(STORAGE_KEY_STATE);
-        return false;
-      }
-      // Restore messages without re-saving
-      h.forEach(function(m) { renderMessage(m.type, m.text); });
-      // Restore state — skip Turnstile if previous session passed it
-      const state = JSON.parse(localStorage.getItem(STORAGE_KEY_STATE) || '{}');
-      if (state.firstMessageSent) {
-        firstMessageSent = true;
-        turnstileShown = true;  // skip Turnstile render
-        input.disabled = false;
-        sendBtn.disabled = false;
-      }
-      return true;
-    } catch (e) {
-      console.warn('Adria chat: localStorage restore failed', e);
-      return false;
-    }
-  }
-
-  function resetChat() {
-    if (!confirm({DE:'Chat zurücksetzen?',SR:'Resetovati razgovor?',EN:'Reset chat?',FR:'Réinitialiser le chat ?'}[lang] || 'Reset chat?')) return;
-    localStorage.removeItem(STORAGE_KEY_HISTORY);
-    localStorage.removeItem(STORAGE_KEY_STATE);
-    localStorage.removeItem(STORAGE_KEY_SESSION);
-    sessionId = generateId();
-    localStorage.setItem(STORAGE_KEY_SESSION, sessionId);
-    msgContainer.innerHTML = '';
-    firstMessageSent = false;
-    turnstileShown = false;
-    turnstileToken = null;
-    input.disabled = true;
-    sendBtn.disabled = true;
-    addMessage('bot', WELCOME[lang] || WELCOME.DE);
-    showTurnstile();
-  }
-
   function openChat() {
     btn.classList.add('hidden');
     wnd.classList.add('open');
-    // First open of this page-load — try to restore history first
     if (msgContainer.children.length === 0) {
-      const restored = restoreHistoryFromStorage();
-      if (!restored) {
-        addMessage('bot', WELCOME[lang] || WELCOME.DE);
-      }
+      addMessage('bot', WELCOME[lang] || WELCOME.DE);
     }
     if (!turnstileShown && !firstMessageSent) {
       showTurnstile();
@@ -504,31 +394,21 @@
     tryRender();
   }
 
-  // Renders a message in the DOM (no save)
-  function renderMessage(type, text) {
+  function addMessage(type, text) {
     const div = document.createElement('div');
     div.className = 'adria-chat-msg ' + type;
     // Linkify: 1) Markdown links [text](url), 2) plain URLs (strip trailing punctuation), 3) emails
     const linked = text
       .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>')
-      .replace(/\b(https?:\/\/[^\s<>]+)/g, function(match, url) {
+      .replace(/\b(https?:\/\/[^\s<>]+)/g, (match, url) => {
         const clean = url.replace(/[.,;:!?)»\]]+$/, '');
         const punct = url.slice(clean.length);
-        return '<a href="' + clean + '" target="_blank" rel="noopener">' + clean + '</a>' + punct;
+        return `<a href="${clean}" target="_blank" rel="noopener">${clean}</a>${punct}`;
       })
       .replace(/\b([a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})\b/g, '<a href="mailto:$1">$1</a>');
     div.innerHTML = linked.replace(/\n/g, '<br>');
     msgContainer.appendChild(div);
     msgContainer.scrollTop = msgContainer.scrollHeight;
-  }
-
-  // Adds a message AND saves to localStorage history
-  function addMessage(type, text) {
-    renderMessage(type, text);
-    // Don't save 'error' to history (transient UI state)
-    if (type !== 'error') {
-      saveMessageToHistory(type, text);
-    }
   }
 
   function showTyping(show) {
@@ -594,7 +474,6 @@
 
       const data = await res.json();
       firstMessageSent = true;
-      saveState();  // persist firstMessageSent across page loads
 
       if (data.reply) {
         addMessage('bot', data.reply);
